@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/gu-people-graph/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/gu-people-graph/static/js/main.45bed80d.chunk.js",
-    "main.js.map": "/gu-people-graph/static/js/main.45bed80d.chunk.js.map",
+    "main.js": "/gu-people-graph/static/js/main.2027592d.chunk.js",
+    "main.js.map": "/gu-people-graph/static/js/main.2027592d.chunk.js.map",
     "runtime-main.js": "/gu-people-graph/static/js/runtime-main.9f2d361f.js",
     "runtime-main.js.map": "/gu-people-graph/static/js/runtime-main.9f2d361f.js.map",
     "static/js/2.ce61baaa.chunk.js": "/gu-people-graph/static/js/2.ce61baaa.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.9f2d361f.js",
     "static/js/2.ce61baaa.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.45bed80d.chunk.js"
+    "static/js/main.2027592d.chunk.js"
   ]
 }
