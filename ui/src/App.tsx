@@ -79,7 +79,11 @@ function App() {
             }
             if (node.x && node.y) {
               const size = 12;
-              ctx.fillStyle = "red";
+              if (node.type === "STREAM") {
+                ctx.fillStyle = "red";
+              } else {
+                ctx.fillStyle = "blue";
+              }
               ctx.fillRect(node.x, node.y, size, size);
               if (node.imgLoaded && node.img) {
                 ctx.drawImage(node.img, node.x, node.y, size, size);
