@@ -44,5 +44,6 @@
   },
   "resolutions": {
     "bezier-js": "4.0.3"
-  }
+  },
+  "homepage": "/gu-people-graph"
 }
