@@ -4,6 +4,9 @@ on: push
 jobs:
   run:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ui
     steps:
       - uses: actions/checkout@v2
 
@@ -12,11 +15,11 @@ jobs:
       # Cache npm dependencies using https://github.com/bahmutov/npm-install
       - uses: bahmutov/npm-install@v1
 
-      - run: cd ui && yarn build
+      - run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ui/build
+          publish_dir: ./build
           destination_dir: docs
