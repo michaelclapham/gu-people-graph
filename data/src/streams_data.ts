@@ -17,5 +17,22 @@ export const pAndEStreams: ProductAndEngineeringStream[] = [
                 githubTeamSlug: 'identity'
             }
         ]
+    },
+    {
+        name: 'Journalism & Ed Tools',
+        teams: [
+            {
+                name: 'Ophan',
+                githubTeamSlug: 'ophan'
+            },
+            {
+                name: 'Investigations',
+                githubTeamSlug: 'investigations'
+            },
+            {
+                name: 'Digital CMS',
+                githubTeamSlug: 'digital-cms'
+            }
+        ]
     }
 ];

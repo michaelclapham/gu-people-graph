@@ -45,5 +45,6 @@ async function populateStreamsWithFullMembers(streams: ProductAndEngineeringStre
   
 
   populateStreamsWithFullMembers(pAndEStreams).then((streamsWithMembers) => {
-    fs.writeFileSync("../docs/streams_with_members.json", JSON.stringify(streamsWithMembers, null, 2));
+    const json = JSON.stringify(streamsWithMembers, null, 2);
+    fs.writeFileSync("../streams_with_members.json", json);
 });
