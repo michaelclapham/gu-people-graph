@@ -6,7 +6,7 @@ export interface ProductAndEngineeringStream {
 export interface ProductAndEngineeringTeam {
   name: string;
   githubTeamSlug?: string;
-  teamMembers: (any & { avatar_url?: string; login?: string; name?: string })[];
+  teamMembers: {avatar_url?: string; login?: string; name?: string, [key: string]: any }[];
 }
 
 export const streams: ProductAndEngineeringStream[] = [
