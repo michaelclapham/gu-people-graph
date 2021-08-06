@@ -20,7 +20,7 @@ const userNameStyle: React.CSSProperties = {
 // };
 
 type GuGraphNode = NodeObject & {
-  type: "STREAM" | "TEAM" | "TEAM_MEMBER",
+  type: "DEPARTMENT" | "STREAM" | "TEAM" | "TEAM_MEMBER",
   name?: string,
   imgUrl?: string;
   imgLoaded?: boolean;
@@ -31,9 +31,12 @@ function generateGraphData(): GraphData {
   let i = 0;
   let nodes: GuGraphNode[] = [];
   let links: LinkObject[] = [];
+  const deptNode: GuGraphNode = { id: i++, type: "DEPARTMENT", name: "Product & Engineering" };
+  nodes.push(deptNode);
   for (let stream of streams) {
     const streamNode: GuGraphNode = { id: i++, type: "STREAM", name: stream.name };
     nodes.push(streamNode);
+    links.push({ source: deptNode.id, target: streamNode.id });
     for (let team of stream.teams) {
       const teamNode: GuGraphNode = { id: i++, type: "TEAM", name: team.name };
       nodes.push(teamNode);
@@ -55,12 +58,29 @@ function generateGraphData(): GraphData {
 
 const gData = generateGraphData();
 
-function renderNode(node: NodeObject, ctx: CanvasRenderingContext2D) {
-  if (node.x && node.y) {
-    ctx.fillStyle = "red";
-    ctx.ellipse(node.x, node.y, 20, 20, 0, 0, Math.PI * 2);
+function renderNode(no: NodeObject, ctx: CanvasRenderingContext2D) {
+  const node = no as GuGraphNode;
+  if (node.imgUrl && !node.img) {
+    node.img = new Image();
+    node.img.src = node.imgUrl;
+    node.img.onload = () => { node.imgLoaded = true };
   }
-  
+  if (node.x && node.y) {
+    const size = 12;
+    if (node.type === "DEPARTMENT") {
+      ctx.fillStyle = "green";
+    } else if (node.type === "STREAM") {
+      ctx.fillStyle = "red";
+    } else if (node.type === "TEAM") {
+      ctx.fillStyle = "orange";
+    } else {
+      ctx.fillStyle = "blue";
+    }
+    ctx.fillRect(node.x, node.y, size, size);
+    if (node.imgLoaded && node.img) {
+      ctx.drawImage(node.img, node.x, node.y, size, size);
+    }
+  }
 }
 
 function App() {
@@ -70,26 +90,7 @@ function App() {
         <ForceGraph2D
           graphData={gData}
           nodeRelSize={12}
-          nodeCanvasObject={(no, ctx) => {
-            const node = no as GuGraphNode;
-            if (node.imgUrl && !node.img) {
-              node.img = new Image();
-              node.img.src = node.imgUrl;
-              node.img.onload = () => { node.imgLoaded = true };
-            }
-            if (node.x && node.y) {
-              const size = 12;
-              if (node.type === "STREAM") {
-                ctx.fillStyle = "red";
-              } else {
-                ctx.fillStyle = "blue";
-              }
-              ctx.fillRect(node.x, node.y, size, size);
-              if (node.imgLoaded && node.img) {
-                ctx.drawImage(node.img, node.x, node.y, size, size);
-              }
-            }
-          }}
+          nodeCanvasObject={(no, ctx) => renderNode(no, ctx)}
         >
         </ForceGraph2D>
         <h1>Guardian - Product and Engineering Streams</h1>
