@@ -34,5 +34,14 @@ export const pAndEStreams: ProductAndEngineeringStream[] = [
                 githubTeamSlug: 'digital-cms'
             }
         ]
+    },
+    {
+        name: 'Advertising',
+        teams: [
+            {
+                name: 'Commercial',
+                githubTeamSlug: 'commercial-dev'
+            }
+        ]
     }
 ];
