@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { streams } from './streams_with_members';
 import ForceGraph2D, { GraphData, LinkObject, NodeObject } from 'react-force-graph-2d';
